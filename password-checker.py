@@ -12,8 +12,10 @@ def request_api_data(char):
 
 def get_password_leaks_count(hashes, hash_to_check):
     hashes = (line.split(':') for line in hashes.text.splitlines())
+    print(hashes)
     for h, count, in hashes:
         if h == hash_to_check:
+            print(h, count)
             return count
     return 0
 
@@ -22,7 +24,6 @@ def pawned_password(passcode):
     sha1_passcode = hashlib.sha1(passcode.encode('utf-8')).hexdigest().upper()
     first5_char, tail = sha1_passcode[:5], sha1_passcode[5:]
     response = request_api_data(first5_char)
-    # print(response.text)
     return get_password_leaks_count(response, tail)
 
 
@@ -36,9 +37,10 @@ def main(args):
         else:
             print(f"{password} was not found. Carry on!")
     print("")
-    print(50 * "*")
-    print("Finished script execution successfully")
+    print(80 * "-")
+    print("Finished script execution successfully!")
 
 
 # enables us to enter options after running a file in the terminal
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

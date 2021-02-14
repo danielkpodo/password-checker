@@ -1,4 +1,4 @@
-# A python script that checks if your password has ever been hacked
+# A python script that checks if your password has ever been pawned
 
 ## Tools
 
